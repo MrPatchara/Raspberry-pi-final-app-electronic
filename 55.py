@@ -11,12 +11,11 @@ import numpy as np
 import webbrowser
 
 
-
 class QRCodeScannerApp:
     def __init__(self, root):
         self.root = root
         self.root.title("AI & QR Code Scanner by Mr.Patchara Al-umaree : 6651630177 ")
-        self.root.geometry("1000x700")
+        self.root.attributes('-fullscreen', True)
         self.root.minsize(800, 600)
         self.root.configure(bg="#2E2E2E")  # Dark background
         self.root.iconphoto(False, PhotoImage(file=r'data\pic\icon.png'))  # Set the app icon
@@ -172,7 +171,7 @@ class QRCodeScannerApp:
         ret, frame = self.cap.read()
         if ret:
             # YOLOv4-tiny object detection
-            blob = cv2.dnn.blobFromImage(frame, 0.00392, (320, 320), (0, 0, 0), True, crop=False)
+            blob = cv2.dnn.blobFromImage(frame, 0.00392, (128, 128), (0, 0, 0), True, crop=False)
             self.yolo_net.setInput(blob)
             outs = self.yolo_net.forward(self.output_layers)
 
